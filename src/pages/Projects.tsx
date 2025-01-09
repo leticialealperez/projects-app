@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { listAllProjects, Project } from "../services/projects-api";
+import { listAllProjects } from "../services/projects-api/projects.services";
+import { Card } from "../components/Card/Card";
+import { Project } from "../services/projects-api/types";
 
 interface UserLogged {
   firstName: string;
@@ -47,9 +49,11 @@ export function Projects() {
         </p>
       ) : null}
 
-      {projects.map((project) => (
-        <p key={project.id}>{project.title}</p>
-      ))}
+      {projects.length ? (
+        projects.map((project) => <Card key={project.id} project={project} />)
+      ) : (
+        <p>Nenhum projeto cadastro ainda.</p>
+      )}
     </div>
   );
 }

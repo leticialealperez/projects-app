@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { signUp } from "../services/projects-api";
+import { signUp } from "../services/projects-api/users.services";
 
 export function SignUp() {
   async function handleSubmit(ev: React.FormEvent<HTMLFormElement>) {
