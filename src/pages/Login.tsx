@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import { signIn } from "../services/projects-api/users.services";
+import { WrapperPage } from "../components/WrapperPage";
+import { FormStyled } from "../components/Form";
 
 export function Login() {
   const navigate = useNavigate();
@@ -30,24 +32,22 @@ export function Login() {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
-
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input type="text" placeholder="Username" name="username" />
-        </div>
-        <div>
-          <input type="password" placeholder="Password" name="password" />
-        </div>
-        <button type="submit">Entrar</button>
-      </form>
-
+    <WrapperPage>
       <div>
-        <span>
-          Ainda não possui conta? <Link to={"/signup"}>Cadastre-se</Link>
-        </span>
+        <h1>Login</h1>
+
+        <FormStyled onSubmit={handleSubmit}>
+          <input type="text" placeholder="Username" name="username" />
+          <input type="password" placeholder="Password" name="password" />
+          <button type="submit">Access</button>
+        </FormStyled>
+
+        <p>
+          <small>
+            Don't have an account? <Link to={"/signup"}>Register</Link>
+          </small>
+        </p>
       </div>
-    </div>
+    </WrapperPage>
   );
 }

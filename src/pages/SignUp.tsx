@@ -1,58 +1,56 @@
 import { Link } from "react-router";
 import { signUp } from "../services/projects-api/users.services";
+import { WrapperPage } from "../components/WrapperPage";
+import { FormStyled } from "../components/Form";
 
 export function SignUp() {
   async function handleSubmit(ev: React.FormEvent<HTMLFormElement>) {
     ev.preventDefault();
 
+    const form = ev.currentTarget;
+
     const resultado = await signUp({
-      firstName: ev.currentTarget.firstName.value,
-      lastName: ev.currentTarget.lastName.value,
-      username: ev.currentTarget.username.value,
-      password: ev.currentTarget.password.value,
+      firstName: form.firstName.value,
+      lastName: form.lastName.value,
+      username: form.username.value,
+      password: form.password.value,
     });
 
     alert(resultado);
 
-    // TO-DO => reset do formulário
+    form.reset();
   }
 
   return (
-    <div>
-      <h1>SignUp</h1>
+    <WrapperPage>
+      <div>
+        <h1>Sign Up</h1>
 
-      <form onSubmit={handleSubmit}>
-        <div>
+        <FormStyled onSubmit={handleSubmit}>
           <input
             type="text"
             name="firstName"
             placeholder="First Name"
             required
           />
-        </div>
-        <div>
           <input type="text" name="lastName" placeholder="Last Name" required />
-        </div>
-        <div>
           <input type="text" name="username" placeholder="Username" required />
-        </div>
-        <div>
           <input
             type="password"
             name="password"
             placeholder="Password"
             required
           />
-        </div>
 
-        <button type="submit">Cadastrar</button>
-      </form>
+          <button type="submit">Register</button>
+        </FormStyled>
 
-      <div>
-        <span>
-          Já possui conta? <Link to={"/"}>Acesse</Link>
-        </span>
+        <p>
+          <small>
+            Already have an account? <Link to={"/"}>Login</Link>
+          </small>
+        </p>
       </div>
-    </div>
+    </WrapperPage>
   );
 }

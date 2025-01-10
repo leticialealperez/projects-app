@@ -1,4 +1,5 @@
-import { Project } from "../../services/projects-api/projects.services";
+import { useNavigate } from "react-router";
+import { Project } from "../../services/projects-api/types";
 
 interface CardProps {
   project: Project;
@@ -10,6 +11,8 @@ const status = {
 };
 
 export function Card(props: CardProps) {
+  const navigate = useNavigate();
+
   return (
     <div>
       <h3>{props.project.title}</h3>
@@ -21,6 +24,15 @@ export function Card(props: CardProps) {
           dateStyle: "full",
         })}
       </small>
+
+      <div>
+        <button onClick={() => navigate(`/project/${props.project.id}`)}>
+          Editar
+        </button>
+        <button>Excluir</button>
+      </div>
+
+      <hr />
     </div>
   );
 }
