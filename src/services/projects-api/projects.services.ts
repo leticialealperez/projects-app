@@ -2,19 +2,21 @@ import { AxiosError } from "axios";
 import { projectsApi } from "./http-config";
 import { CreateProject, GetProjectById, Project, UpdateProject } from "./types";
 
-export async function listAllProjects(authToken: string): Promise<Project[]> {
+// Função de service capaz de integrar com a rota de listagem dos projetos na API
+export async function listAllProjects(authToken: string) {
   try {
     const response = await projectsApi.get("/projects", {
       headers: { Authorization: authToken },
     });
 
-    return response.data.data;
+    return response.data.data as Project[];
   } catch (error: unknown) {
     console.log(error);
     return [];
   }
 }
 
+// Função de service capaz de integrar com a rota de cadastro dos projetos na API
 export async function createProject(data: CreateProject) {
   try {
     const response = await projectsApi.post(
@@ -52,6 +54,7 @@ export async function createProject(data: CreateProject) {
   }
 }
 
+// Função de service capaz de integrar com a rota de busca de projetos por ID na API
 export async function getProjectById(data: GetProjectById) {
   try {
     const response = await projectsApi.get(`/projects/${data.projectId}`, {
@@ -78,6 +81,7 @@ export async function getProjectById(data: GetProjectById) {
   }
 }
 
+// Função de service capaz de integrar com a rota de atualização de projetos na API
 export async function updateProject(data: UpdateProject) {
   try {
     const response = await projectsApi.put(

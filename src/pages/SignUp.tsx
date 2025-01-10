@@ -4,6 +4,8 @@ import { WrapperPage } from "../components/WrapperPage";
 import { FormStyled } from "../components/Form";
 
 export function SignUp() {
+  // Função atribuida ao evento de submit do formulário de cadastro
+  // Dispara quando o usuário clica no botão de submit
   async function handleSubmit(ev: React.FormEvent<HTMLFormElement>) {
     ev.preventDefault();
 
@@ -16,7 +18,7 @@ export function SignUp() {
       password: form.password.value,
     });
 
-    alert(resultado);
+    alert(resultado.message);
 
     form.reset();
   }

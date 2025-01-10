@@ -1,8 +1,3 @@
-export interface ResponseUserRequestsAPI {
-  message: string;
-  user?: User;
-}
-
 export interface User {
   id: string;
   firstName: string;

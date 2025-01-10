@@ -7,6 +7,7 @@ import { FormStyled } from "../components/Form";
 export function Login() {
   const navigate = useNavigate();
 
+  // Verifica se possui um usuário já logado para poder redireciona-lo à página principal
   useEffect(() => {
     const userLogged = localStorage.getItem("userLogged");
 
@@ -15,6 +16,8 @@ export function Login() {
     }
   }, [navigate]);
 
+  // Função atribuida ao evento de submit do formulário de login
+  // Dispara quando o usuário clica no botão de submit
   async function handleSubmit(ev: React.FormEvent<HTMLFormElement>) {
     ev.preventDefault();
 
