@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const projectsApi = axios.create({
-  baseURL: "https://api-projetos-growdev.onrender.com",
+  baseURL: import.meta.env.VITE_PROJECTS_API_URL,
 });
